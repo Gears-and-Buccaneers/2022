@@ -14,10 +14,10 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int kLeftMaster = 0;
-        public static final int kLeftSlave = 1;
-        public static final int kRightMaster = 2;
-        public static final int kRightSlave = 3;
+        public static final int kLeftParent = 0;
+        public static final int kLeftChild = 1;
+        public static final int kRightParent = 2;
+        public static final int kRightChild = 3;
         public static final int SPEED = 50;
 
         public static final int kVoltageCompLevel = 11;     // this is what the old code has this value as

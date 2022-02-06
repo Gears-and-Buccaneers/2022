@@ -17,48 +17,48 @@ import frc.robot.Constants.DriveConstants;
 public class DriveTrainNew extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public int indexx;
-  private final WPI_TalonFX leftMaster = new WPI_TalonFX(DriveConstants.kLeftMaster);
-  private final WPI_TalonFX leftSlave = new WPI_TalonFX(DriveConstants.kLeftSlave);
+  private final WPI_TalonFX leftParent = new WPI_TalonFX(DriveConstants.kLeftParent);
+  private final WPI_TalonFX leftChild = new WPI_TalonFX(DriveConstants.kLeftChild);
 
   // right side motors
-  private final WPI_TalonFX rightMaster = new WPI_TalonFX(DriveConstants.kRightMaster);
-  private final WPI_TalonFX rightSlave = new WPI_TalonFX(DriveConstants.kRightSlave);
+  private final WPI_TalonFX rightParent = new WPI_TalonFX(DriveConstants.kRightParent);
+  private final WPI_TalonFX rightChild = new WPI_TalonFX(DriveConstants.kRightChild);
 
-  private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftMaster, leftSlave);
-  private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightMaster, rightSlave);
+  private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftParent, leftChild);
+  private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightParent, rightChild);
 
   private final DifferentialDrive m_drive = new DifferentialDrive(leftMotors, rightMotors);
 
 
   public DriveTrainNew() {
     // this is to set the falcons to factory defalt. so this is needed to make it work
-    leftMaster.configFactoryDefault();
-    leftSlave.configFactoryDefault();
-    rightMaster.configFactoryDefault();
-    rightSlave.configFactoryDefault();
+    leftParent.configFactoryDefault();
+    leftChild.configFactoryDefault();
+    rightParent.configFactoryDefault();
+    rightChild.configFactoryDefault();
     // this should stop the browning out. this is baced on the old code.
-    leftMaster.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
-    leftMaster.enableVoltageCompensation(true);
-    leftMaster.configOpenloopRamp(DriveConstants.kRampCoefficient);
-    leftSlave.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
-    leftSlave.enableVoltageCompensation(true);
-    leftSlave.configOpenloopRamp(DriveConstants.kRampCoefficient);
-    rightMaster.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
-    rightMaster.enableVoltageCompensation(true);
-    rightMaster.configOpenloopRamp(DriveConstants.kRampCoefficient);    
-    rightSlave.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
-    rightSlave.enableVoltageCompensation(true);
-    rightSlave.configOpenloopRamp(DriveConstants.kRampCoefficient);
+    leftParent.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
+    leftParent.enableVoltageCompensation(true);
+    leftParent.configOpenloopRamp(DriveConstants.kRampCoefficient);
+    leftChild.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
+    leftChild.enableVoltageCompensation(true);
+    leftChild.configOpenloopRamp(DriveConstants.kRampCoefficient);
+    rightParent.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
+    rightParent.enableVoltageCompensation(true);
+    rightParent.configOpenloopRamp(DriveConstants.kRampCoefficient);    
+    rightChild.configVoltageCompSaturation(DriveConstants.kVoltageCompLevel);
+    rightChild.enableVoltageCompensation(true);
+    rightChild.configOpenloopRamp(DriveConstants.kRampCoefficient);
     // this makes things brake.
-    rightMaster.setNeutralMode(NeutralMode.Brake);
-    rightSlave.setNeutralMode(NeutralMode.Brake);
-    leftMaster.setNeutralMode(NeutralMode.Brake);
-    leftSlave.setNeutralMode(NeutralMode.Brake);
+    rightParent.setNeutralMode(NeutralMode.Brake);
+    rightChild.setNeutralMode(NeutralMode.Brake);
+    leftParent.setNeutralMode(NeutralMode.Brake);
+    leftChild.setNeutralMode(NeutralMode.Brake);
 
-    rightMaster.setInverted(true);
-    rightSlave.setInverted(true);
-    leftMaster.setInverted(true);
-    leftSlave.setInverted(true);
+    rightParent.setInverted(true);
+    rightChild.setInverted(true);
+    leftParent.setInverted(true);
+    leftChild.setInverted(true);
   }
 
   @Override
@@ -78,8 +78,8 @@ public class DriveTrainNew extends SubsystemBase {
   }
 
   public void stop(){
-    leftMaster.set(ControlMode.PercentOutput, 0);
-    rightMaster.set(ControlMode.PercentOutput, 0);
+    leftParent.set(ControlMode.PercentOutput, 0);
+    rightParent.set(ControlMode.PercentOutput, 0);
   }
 
 }

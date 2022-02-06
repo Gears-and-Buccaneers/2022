@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.intakeCommand;
 import frc.robot.subsystems.DriveTrainNew;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.SingleMotor;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -22,7 +21,6 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Controller;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.subsystems.DriveTrainNew;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import frc.robot.commands.drivetrainC;
