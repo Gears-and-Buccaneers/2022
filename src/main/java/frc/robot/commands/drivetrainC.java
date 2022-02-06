@@ -9,20 +9,22 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrainNew;
 import java.util.function.DoubleSupplier;
+import edu.wpi.first.wpilibj.Joystick;
 /** An example command that uses an example subsystem. */
 public class drivetrainC extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrainNew m_driveTrain;
-  private final double  m_movingForward;
-  private final double  m_turning;
+//   private final double  m_movingForward;
+//   private final double  m_turning;
+  private final Joystick m_stick = new Joystick(0);
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public drivetrainC(DriveTrainNew driveTrain,double  forward, double  turning) {
-    m_movingForward = forward;
-    m_turning = turning;
+  public drivetrainC(DriveTrainNew driveTrain) {
+    // m_movingForward = forward;
+    // m_turning = turning;
     m_driveTrain = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
@@ -35,7 +37,9 @@ public class drivetrainC extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveTrain.arcadeDrive(m_movingForward, m_turning);
+    // m_movingForward = m_stick.getY();
+    // m_turning = m_stick.getX();
+    m_driveTrain.arcadeDrive(m_stick.getX(), m_stick.getY());
   }
 
   // Called once the command ends or is interrupted.

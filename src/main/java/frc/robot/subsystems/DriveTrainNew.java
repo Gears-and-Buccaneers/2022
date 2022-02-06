@@ -55,8 +55,8 @@ public class DriveTrainNew extends SubsystemBase {
     leftMaster.setNeutralMode(NeutralMode.Brake);
     leftSlave.setNeutralMode(NeutralMode.Brake);
 
-    rightMaster.setInverted(false);
-    rightSlave.setInverted(false);
+    rightMaster.setInverted(true);
+    rightSlave.setInverted(true);
     leftMaster.setInverted(true);
     leftSlave.setInverted(true);
   }

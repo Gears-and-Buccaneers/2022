@@ -42,8 +42,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // this is a list of all the subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem(); //this is just an example
-  public XboxController m_stick = new XboxController(Controller.kDriverControllerPort);
-  //private final Joystick m_stick = new Joystick(0);
+  //public XboxController m_stick = new XboxController(Controller.kDriverControllerPort);
+  private final Joystick m_stick = new Joystick(0);
 
   // this is a list of all the commans
 
@@ -60,11 +60,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    SmartDashboard.putNumber("1", m_stick.getRawAxis(1));
-    SmartDashboard.putNumber("2", m_stick.getRawAxis(2));
-    m_drivetrain.setDefaultCommand(new drivetrainC(m_drivetrain,m_stick.getRawAxis(1),m_stick.getRawAxis(2)));
-    SmartDashboard.putNumber("1", m_stick.getRawAxis(1));
-    SmartDashboard.putNumber("2", m_stick.getRawAxis(2));
+    
+    m_drivetrain.setDefaultCommand(new drivetrainC(m_drivetrain));//m_stick.getRawAxis(1),m_stick.getRawAxis(2)));
+    
     
     //SmartDashboard.putNumber("3", m_stick.getY());//a
     //new RunCommand(() -> m_drivetrain.arcadeDrive(m_driverController.getRawAxis(1),m_driverController.getRawAxis(2)), m_drivetrain);
@@ -79,6 +77,16 @@ public class RobotContainer {
    */
   //private final Joystick m_stick = new Joystick(0);
   private void configureButtonBindings() {
+    SmartDashboard.putBoolean("1", m_stick.getRawButton(1));//a
+    SmartDashboard.putBoolean("2", m_stick.getRawButton(2));//b
+    SmartDashboard.putBoolean("3", m_stick.getRawButton(3));//x
+    SmartDashboard.putBoolean("4", m_stick.getRawButton(4));//y
+    SmartDashboard.putBoolean("5", m_stick.getRawButton(5));//l2
+    SmartDashboard.putBoolean("6", m_stick.getRawButton(6));//r2
+    SmartDashboard.putBoolean("7", m_stick.getRawButton(7));//start
+    SmartDashboard.putBoolean("8", m_stick.getRawButton(8));//back
+    SmartDashboard.putNumber("10", m_stick.getRawAxis(1));
+    SmartDashboard.putNumber("11", m_stick.getRawAxis(2));
     // m_drive.arcadeDrive(m_stick.getX(), m_stick.getY());
     //new JoystickButton(m_driveController, 1).whenActive(m_shooter); // this would be like button a or somehting else like that
     //l2.whenPressed(m_shooter);

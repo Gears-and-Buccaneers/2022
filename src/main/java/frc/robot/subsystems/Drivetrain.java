@@ -53,8 +53,8 @@ public class Drivetrain {
     rightSlave.configOpenloopRamp(DriveConstants.kRampCoefficient);
 		
 		/* Configure output and sensor direction */
-    leftMaster.setInverted(true);
-    leftSlave.setInverted(true);
+    leftMaster.setInverted(false);
+    leftSlave.setInverted(false);
     rightMaster.setInverted(false);
     rightSlave.setInverted(false);
 
