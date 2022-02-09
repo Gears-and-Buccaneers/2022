@@ -29,6 +29,7 @@ public final class Constants {
 
     public static final class Controller {
         public static final int kDriverControllerPort = 0; // this is the port were the controler is conected.
+        public static final int kjoysticCofetien = 2; // it must be larger
         //public static final int ControllerType = -- need to think how to do this one. i am not going to do this now.
     }
 }

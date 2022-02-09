@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
+import frc.robot.Constants.Controller;
 import frc.robot.Constants.DriveConstants;
 
 public class DriveTrainNew extends SubsystemBase {
@@ -72,9 +72,7 @@ public class DriveTrainNew extends SubsystemBase {
   }
 
   public void arcadeDrive(double fwd, double rot) {
-    //drive swap logic
-
-    m_drive.arcadeDrive(fwd, (-1)*(rot+0), true); // Squaring values
+    m_drive.arcadeDrive(fwd*.8, rot*.6, true); // Squaring values
   }
 
   public void stop(){
