@@ -20,6 +20,9 @@ public class drivetrainC extends CommandBase {
 //   private final double  m_turning;
   private final Joystick m_stick = new Joystick(0);
   // private final  pastJoystics = new[];
+
+  // this is somehting taht is prety cool
+  
   /*
    * Creates a new ExampleCommand.
    *
