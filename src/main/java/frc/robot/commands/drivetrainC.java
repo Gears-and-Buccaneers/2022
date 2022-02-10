@@ -8,6 +8,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrainNew;
+
+import java.lang.reflect.Array;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.Joystick;
 /** An example command that uses an example subsystem. */
@@ -17,7 +19,8 @@ public class drivetrainC extends CommandBase {
 //   private final double  m_movingForward;
 //   private final double  m_turning;
   private final Joystick m_stick = new Joystick(0);
-  /**
+  // private final  pastJoystics = new[];
+  /*
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
