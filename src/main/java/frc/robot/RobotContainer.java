@@ -41,18 +41,17 @@ public class RobotContainer {
   // this is a list of all the subsystems
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem(); //this is just an example
   //public XboxController m_stick = new XboxController(Controller.kDriverControllerPort);
-  private final Joystick m_stick = new Joystick(0);
 
   // this is a list of all the commans
 
   //public final ShootorTest m_shooter = new ShootorTest(m_SingleMotor1, m_SingleMotor2, 10,-1);
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem); //this is just an example
+  private final ExampleCommand m_autoCommand = new ExampleCommand(); //this is just an example
   public final DriveTrainNew m_drivetrain = new DriveTrainNew();
   
   // final JoystickButton l2 = new JoystickButton(m_driveController, 1);
   // final JoystickButton l1 = new JoystickButton(m_driveController, 2);
   // more cool stuff
-  
+
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -76,16 +75,6 @@ public class RobotContainer {
    */
   //private final Joystick m_stick = new Joystick(0);
   private void configureButtonBindings() {
-    SmartDashboard.putBoolean("1", m_stick.getRawButton(1));//a
-    SmartDashboard.putBoolean("2", m_stick.getRawButton(2));//b
-    SmartDashboard.putBoolean("3", m_stick.getRawButton(3));//x
-    SmartDashboard.putBoolean("4", m_stick.getRawButton(4));//y
-    SmartDashboard.putBoolean("5", m_stick.getRawButton(5));//l2
-    SmartDashboard.putBoolean("6", m_stick.getRawButton(6));//r2
-    SmartDashboard.putBoolean("7", m_stick.getRawButton(7));//start
-    SmartDashboard.putBoolean("8", m_stick.getRawButton(8));//back
-    SmartDashboard.putNumber("10", m_stick.getRawAxis(1));
-    SmartDashboard.putNumber("11", m_stick.getRawAxis(2));
     // m_drive.arcadeDrive(m_stick.getX(), m_stick.getY());
     //new JoystickButton(m_driveController, 1).whenActive(m_shooter); // this would be like button a or somehting else like that
     //l2.whenPressed(m_shooter);
