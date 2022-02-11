@@ -72,8 +72,12 @@ public class DriveTrainNew extends SubsystemBase {
   }
 
   public void arcadeDrive(double fwd, double rot) {
+    
     m_drive.arcadeDrive(fwd*.8, rot*.6, true); // Squaring values
+    
   }
+
+  
 
   public void stop(){
     leftParent.set(ControlMode.PercentOutput, 0);
