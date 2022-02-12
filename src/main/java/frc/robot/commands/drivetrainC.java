@@ -12,7 +12,6 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.Controller;
 /** An example command that uses an example subsystem. */
 public class drivetrainC extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DriveTrainNew m_driveTrain;
 //   private final double  m_movingForward;
 //   private final double  m_turning;
@@ -70,7 +69,7 @@ public class drivetrainC extends CommandBase {
       sum += arr[i];
     
     return sum;
-    }
+  }
   
   // Called once the command ends or is interrupted.
   @Override
