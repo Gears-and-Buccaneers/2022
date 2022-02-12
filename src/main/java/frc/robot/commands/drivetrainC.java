@@ -34,11 +34,10 @@ public class drivetrainC extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
   }
-
+  double[] intArray = new double[Controller.kArrayLength];
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    int[] intArray = new int[Controller.kArrayLength];
     for (int j = 0; j < intArray.length; j++)
       intArray[j] = 0 ;
   }
@@ -55,14 +54,17 @@ public class drivetrainC extends CommandBase {
   
 
   public double LagArray(double joysick, int arrayLength) {
-    
-    
-    return joysick;
+
+    for (int i = 0; i < arrayLength-1; i++) {
+      intArray[i+1] = intArray[i];
+    }
+    intArray[0] = joysick;
+    return sum(intArray);
   }
 
-  public static double sum(int[] arr) {
+  public static double sum(double[] arr) {
     // getting sum of array values
-    int sum = 0;
+    double sum = 0;
     
     for (int i = 0; i < arr.length; i++)
       sum += arr[i];
