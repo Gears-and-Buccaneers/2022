@@ -10,7 +10,7 @@ public class ExampleCommand extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(ExampleSubsystem ExampleSubsystem ) {
+  public ExampleCommand() {
   }
 
   // Called when the command is initially scheduled.

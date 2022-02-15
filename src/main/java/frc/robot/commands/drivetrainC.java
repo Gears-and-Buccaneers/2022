@@ -47,7 +47,7 @@ public class drivetrainC extends CommandBase {
     // m_movingForward = m_stick.getY();
     // m_turning = m_stick.getX();
     
-    m_driveTrain.arcadeDrive(LagArray(m_stick.getX(),Controller.kArrayLength), m_stick.getY());
+    m_driveTrain.arcadeDrive(LagArray(m_stick.getX(),Controller.kArrayLength), m_stick.getY()*0.6);
   }
 
   
@@ -58,7 +58,7 @@ public class drivetrainC extends CommandBase {
       intArray[i+1] = intArray[i];
     }
     intArray[0] = joysick;
-    return sum(intArray);
+    return (sum(intArray)/Controller.kArrayLength);
   }
 
   public static double sum(double[] arr) {
