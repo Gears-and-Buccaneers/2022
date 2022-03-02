@@ -10,12 +10,15 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.Controller;
+import frc.robot.subsystems.SingleMotor;
 /** An example command that uses an example subsystem. */
 public class drivetrainC extends CommandBase {
   private final DriveTrainNew m_driveTrain;
 //   private final double  m_movingForward;
 //   private final double  m_turning;
   private final Joystick m_stick = new Joystick(0);
+
+  private final SingleMotor m_singleMotor;
   
   // private final  pastJoystics = new[];
 
@@ -26,10 +29,11 @@ public class drivetrainC extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public drivetrainC(DriveTrainNew driveTrain) {
+  public drivetrainC(DriveTrainNew driveTrain, SingleMotor singleMotor) {
     // m_movingForward = forward;
     // m_turning = turning;
     m_driveTrain = driveTrain;
+    m_singleMotor = singleMotor;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
   }
@@ -47,7 +51,17 @@ public class drivetrainC extends CommandBase {
     // m_movingForward = m_stick.getY();
     // m_turning = m_stick.getX();
     
-    m_driveTrain.arcadeDrive(LagArray(m_stick.getX(),Controller.kArrayLength), m_stick.getY()*0.6);
+    //m_driveTrain.arcadeDrive(LagArray(m_stick.getY(), intArray)*.8, m_stick.getX()*0.6);
+
+
+    if (m_stick.getRawButton(1)) {
+      m_singleMotor.run(.5);
+    } else if (m_stick.getRawButton(3)) {
+      m_singleMotor.run(-.5);
+    } else {
+      m_singleMotor.run(0);
+    }
+
   }
 
   

@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import javax.imageio.ImageIO;
+
 import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -24,7 +26,8 @@ import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import frc.robot.commands.drivetrainC;
-import frc.robot.commands.ShootorTest;
+import frc.robot.commands.Climberr;
+import frc.robot.commands.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -47,6 +50,7 @@ public class RobotContainer {
   //public final ShootorTest m_shooter = new ShootorTest(m_SingleMotor1, m_SingleMotor2, 10,-1);
   private final ExampleCommand m_autoCommand = new ExampleCommand(); //this is just an example
   public final DriveTrainNew m_drivetrain = new DriveTrainNew();
+  public final SingleMotor m_climberMotor = new SingleMotor(10);
   
   // final JoystickButton l2 = new JoystickButton(m_driveController, 1);
   // final JoystickButton l1 = new JoystickButton(m_driveController, 2);
@@ -59,8 +63,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     
-    m_drivetrain.setDefaultCommand(new drivetrainC(m_drivetrain));//m_stick.getRawAxis(1),m_stick.getRawAxis(2)));
-    
+    m_drivetrain.setDefaultCommand(new drivetrainC(m_drivetrain, m_climberMotor));//m_stick.getRawAxis(1),m_stick.getRawAxis(2)));
+    // new Climberr(m_climberMotor);
     
     //SmartDashboard.putNumber("3", m_stick.getY());//a
     //new RunCommand(() -> m_drivetrain.arcadeDrive(m_driverController.getRawAxis(1),m_driverController.getRawAxis(2)), m_drivetrain);

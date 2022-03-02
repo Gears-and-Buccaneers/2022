@@ -8,10 +8,17 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 /** An example command that uses an example subsystem. */
-public class Climberr extends CommandBase {
+public class Shooter extends CommandBase {
 
-  private final SingleMotor m_singleMotor;
+  private final SingleMotor m_shooterOne;
+  private final SingleMotor m_shooterTwo;
+  private final SingleMotor m_Intake;
+  private final SingleMotor m_Transport;
+
   private final Joystick m_stick = new Joystick(0);
+  private boolean ToggleShooter = false;
+  private boolean ToggleIntake = false;
+  private boolean ToggleTransit = false;
   // Button X_Button = new JoystickButton(m_stick, 3);
   // Button Y_Button = new JoystickButton(m_stick, 4);
   /**
@@ -19,8 +26,11 @@ public class Climberr extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Climberr(SingleMotor singleMotor) {
-    m_singleMotor = singleMotor;
+  public Shooter(SingleMotor singleMotor) {
+    m_shooterOne = singleMotor;
+    m_shooterTwo = singleMotor;
+    m_Intake = singleMotor;
+    m_Transport = singleMotor;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(singleMotor);
   }
@@ -32,11 +42,26 @@ public class Climberr extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
     if (m_stick.getRawButton(1)) {
-      m_singleMotor.run(25);
-    } 
+      ToggleShooter = ToggleShooter != true;
+    }
+    if (m_stick.getRawButton(2)) {
+      ToggleIntake = ToggleIntake != true;
+    }
     if (m_stick.getRawButton(3)) {
-      m_singleMotor.run(-25);
+      ToggleTransit = ToggleTransit != true;
+    }
+    
+    if (ToggleShooter) {
+      m_shooterOne.run(50);
+      m_shooterTwo.run(50);
+    }
+    if (ToggleIntake) {
+      m_Intake.run(50);
+    }
+    if (ToggleTransit) {
+      m_Transport.run(50);
     }
   }
 

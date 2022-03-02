@@ -57,8 +57,8 @@ public class DriveTrainNew extends SubsystemBase {
 
     rightParent.setInverted(true);
     rightChild.setInverted(true);
-    leftParent.setInverted(true);
-    leftChild.setInverted(true);
+    leftParent.setInverted(false);
+    leftChild.setInverted(false);
   }
 
   @Override
