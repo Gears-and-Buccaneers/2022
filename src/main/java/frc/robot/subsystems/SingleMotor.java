@@ -13,11 +13,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 public class SingleMotor extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public int indexx;
+  private int indexx;
 
   public SingleMotor(int indexx) {}
 
-  private final WPI_TalonFX main1 = new WPI_TalonFX(10);
+  private final WPI_TalonFX main1 = new WPI_TalonFX(indexx);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

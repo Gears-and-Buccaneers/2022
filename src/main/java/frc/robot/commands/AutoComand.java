@@ -3,41 +3,40 @@ package frc.robot.commands;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.SingleMotor;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.button.Button;
+import frc.robot.subsystems.DriveTrainNew;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 /** An example command that uses an example subsystem. */
-public class Climberr extends CommandBase {
-
-  private final SingleMotor m_singleMotor;
-  private final Joystick m_stick = new Joystick(0);
-  // Button X_Button = new JoystickButton(m_stick, 3);
-  // Button Y_Button = new JoystickButton(m_stick, 4);
+public class AutoComand extends CommandBase {
+  private final DriveTrainNew m_driveTrain;
+  private final Timer m_timer = new Timer();
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Climberr(SingleMotor singleMotor) {
-    m_singleMotor = singleMotor;
+  public AutoComand(DriveTrainNew driveTrain) {
+    // m_movingForward = forward;
+    // m_turning = turning;
+    m_driveTrain = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(singleMotor);
+    addRequirements(driveTrain);
   }
-  
+
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_timer.reset();
+    m_timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if (m_stick.getRawButton(1)) {
-      m_singleMotor.run(.5);
-    } else if (m_stick.getRawButton(3)) {
-      m_singleMotor.run(-.5);
+  //@Override
+  public void run() {
+    if (m_timer.get() <= 2.0) {
+      m_driveTrain.arcadeDrive(.2, 0);
     } else {
-      m_singleMotor.run(0);
+      m_driveTrain.arcadeDrive(0, 0);
     }
   }
 

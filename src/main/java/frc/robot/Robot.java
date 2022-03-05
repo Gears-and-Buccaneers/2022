@@ -7,7 +7,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.AutoComand;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -27,7 +27,9 @@ import frc.robot.subsystems.SingleMotor;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.Controller;
 
-
+import frc.robot.commands.AutoComand;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveTrainNew;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -42,7 +44,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
+  public final DriveTrainNew m_drivetrain = new DriveTrainNew();
+  private final AutoComand m_autoCommand = new AutoComand(m_drivetrain);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.

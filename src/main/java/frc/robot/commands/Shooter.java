@@ -3,22 +3,16 @@ package frc.robot.commands;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.SingleMotor;
+import frc.robot.subsystems.SingleMotorVictor;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 /** An example command that uses an example subsystem. */
 public class Shooter extends CommandBase {
 
-  private final SingleMotor m_shooterOne;
-  private final SingleMotor m_shooterTwo;
-  private final SingleMotor m_Intake;
-  private final SingleMotor m_Transport;
+  private final SingleMotorVictor m_shooterOne;
+  private final SingleMotorVictor m_shooterTwo;
 
-  private final Joystick m_stick = new Joystick(0);
-  private boolean ToggleShooter = false;
-  private boolean ToggleIntake = false;
-  private boolean ToggleTransit = false;
   // Button X_Button = new JoystickButton(m_stick, 3);
   // Button Y_Button = new JoystickButton(m_stick, 4);
   /**
@@ -26,13 +20,11 @@ public class Shooter extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Shooter(SingleMotor singleMotor) {
-    m_shooterOne = singleMotor;
-    m_shooterTwo = singleMotor;
-    m_Intake = singleMotor;
-    m_Transport = singleMotor;
+  public Shooter(SingleMotorVictor singleMotor1, SingleMotorVictor singleMotor2) {
+    m_shooterOne = singleMotor1;
+    m_shooterTwo = singleMotor2;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(singleMotor);
+    addRequirements(singleMotor1, singleMotor2);
   }
   
   // Called when the command is initially scheduled.
@@ -42,32 +34,16 @@ public class Shooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if (m_stick.getRawButton(1)) {
-      ToggleShooter = ToggleShooter != true;
-    }
-    if (m_stick.getRawButton(2)) {
-      ToggleIntake = ToggleIntake != true;
-    }
-    if (m_stick.getRawButton(3)) {
-      ToggleTransit = ToggleTransit != true;
-    }
-    
-    if (ToggleShooter) {
-      m_shooterOne.run(50);
-      m_shooterTwo.run(50);
-    }
-    if (ToggleIntake) {
-      m_Intake.run(50);
-    }
-    if (ToggleTransit) {
-      m_Transport.run(50);
-    }
+    m_shooterOne.run(.5);
+    m_shooterTwo.run(.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_shooterOne.run(0);
+    m_shooterTwo.run(0);
+  }
 
   // Returns true when the command should end.
   @Override

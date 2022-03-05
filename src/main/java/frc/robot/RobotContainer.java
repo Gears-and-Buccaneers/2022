@@ -11,7 +11,6 @@ import com.ctre.phoenix.sensors.Pigeon2;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.simulation.JoystickSim;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.intakeCommand;
 import frc.robot.subsystems.DriveTrainNew;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -30,8 +29,10 @@ import frc.robot.commands.Climberr;
 import frc.robot.commands.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-
+import frc.robot.subsystems.SingleMotorVictor;
+import frc.robot.Constants.Controller;
+import frc.robot.commands.Shooter;
+import frc.robot.commands.AutoComand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -46,24 +47,24 @@ public class RobotContainer {
   //public XboxController m_stick = new XboxController(Controller.kDriverControllerPort);
 
   // this is a list of all the commans
+  public final SingleMotorVictor m_SingleMotor1 = new SingleMotorVictor(4);
+  public final SingleMotorVictor m_SingleMotor2 = new SingleMotorVictor(5);
 
-  //public final ShootorTest m_shooter = new ShootorTest(m_SingleMotor1, m_SingleMotor2, 10,-1);
-  private final ExampleCommand m_autoCommand = new ExampleCommand(); //this is just an example
+   //this is just an example
+
   public final DriveTrainNew m_drivetrain = new DriveTrainNew();
-  public final SingleMotor m_climberMotor = new SingleMotor(10);
+  public final XboxController m_driveController = new XboxController(Controller.kDriverControllerPort);
   
-  // final JoystickButton l2 = new JoystickButton(m_driveController, 1);
+  final JoystickButton l2 = new JoystickButton(m_driveController, 1);
   // final JoystickButton l1 = new JoystickButton(m_driveController, 2);
   // more cool stuff
-
-
-  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     
-    m_drivetrain.setDefaultCommand(new drivetrainC(m_drivetrain, m_climberMotor));//m_stick.getRawAxis(1),m_stick.getRawAxis(2)));
+    m_drivetrain.setDefaultCommand(new drivetrainC(m_drivetrain)); // uncoment this
+    //m_stick.getRawAxis(1),m_stick.getRawAxis(2)));
     // new Climberr(m_climberMotor);
     
     //SmartDashboard.putNumber("3", m_stick.getY());//a
@@ -81,7 +82,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // m_drive.arcadeDrive(m_stick.getX(), m_stick.getY());
     //new JoystickButton(m_driveController, 1).whenActive(m_shooter); // this would be like button a or somehting else like that
-    //l2.whenPressed(m_shooter);
+    l2.whenPressed(new Shooter(m_SingleMotor1, m_SingleMotor2));
+    
 
   }
 
@@ -92,6 +94,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }
